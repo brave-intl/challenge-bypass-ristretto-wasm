@@ -108,6 +108,11 @@ impl SigningKey {
     pub fn rederive_unblinded_token(&self, t: &TokenPreimage) -> UnblindedToken {
         UnblindedToken(self.0.rederive_unblinded_token(&t.0))
     }
+
+    /// Return the `PublicKey` for this `SigningKey`
+    pub fn public_key(&self) -> PublicKey {
+        PublicKey(self.0.public_key)
+    }
 }
 
 #[wasm_bindgen]
@@ -115,6 +120,11 @@ impl UnblindedToken {
     /// Derive the `VerificationKey` for this particular `UnblindedToken`
     pub fn derive_verification_key_sha512(&self) -> VerificationKey {
         VerificationKey(self.0.derive_verification_key::<Sha512>())
+    }
+
+    /// Return the `TokenPreimage` for this particular `UnblindedToken`
+    pub fn preimage(&self) -> TokenPreimage {
+        TokenPreimage(self.0.t)
     }
 }
 
@@ -165,7 +175,7 @@ impl BatchDLEQProof {
 
     /// Verify the `BatchDLEQProof` returning a comma separated list of b64 encoded unblinded tokens,
     /// takes tokens as a comma separated list of b64 encoded strings
-    pub fn validate_from_encoded(
+    pub fn verify_and_unblind_from_encoded(
         &self,
         tokens: String,
         blinded_tokens: String,
