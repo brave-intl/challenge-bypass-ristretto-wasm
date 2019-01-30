@@ -3,9 +3,12 @@ name = "challenge-bypass-ristretto-wasm"
 version = "0.1.0"
 authors = ["eV <ev@7pr.xyz>"]
 edition = "2018"
+description = "a WASM crate to expose functionality from challenge-bypass-ristretto (WIP)"
+
 
 [lib]
 crate-type = ["cdylib"]
+name = "challenge_bypass_ristretto"
 
 [dependencies]
 wasm-bindgen = "0.2"

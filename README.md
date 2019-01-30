@@ -1,6 +1,6 @@
 # challenge-bypass-ristretto-wasm
 
-a WASM crate to expose functionality from challenge-bypass-ristretto
+a WASM crate to expose functionality from challenge-bypass-ristretto (WIP)
 
 WORK IN PROGRESS, DO NOT USE FOR NON-TESTING PURPOSES
 
