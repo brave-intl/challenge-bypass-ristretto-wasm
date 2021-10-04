@@ -12,13 +12,13 @@ name = "challenge_bypass_ristretto"
 
 [dependencies]
 wasm-bindgen = "0.2"
-rand = { version = "0.6.0", features = ["wasm-bindgen"] }
-sha2 = "0.8"
-hmac = "0.7"
+rand = { version = "0.7", features = ["wasm-bindgen"] }
+sha2 = "0.9"
+hmac = "0.10"
 
 [dependencies.challenge-bypass-ristretto]
 git = "https://github.com/brave-intl/challenge-bypass-ristretto"
-rev = "7e25308ad5b5e2daf73d586fae06eed33547cf22"
+rev = "17a7922d8e174b20af1230f5b05f949c8c967eb5"
 features = ["base64", "nightly"]
 
 [dependencies.cbr-macros]

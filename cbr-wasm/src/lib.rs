@@ -1,6 +1,6 @@
+extern crate cbr_macros;
 extern crate challenge_bypass_ristretto;
 extern crate hmac;
-extern crate cbr_macros;
 extern crate rand;
 extern crate sha2;
 extern crate wasm_bindgen;
@@ -69,10 +69,8 @@ pub struct BatchDLEQProof(_BatchDLEQProof);
 impl Token {
     /// Generates a new random `Token` using the provided random number generator.
     pub fn random() -> Result<Token, JsValue> {
-        match OsRng::new() {
-            Ok(mut rng) => Ok(Token(_Token::random::<Sha512, OsRng>(&mut rng))),
-            Err(err) => Err(JsValue::from_str(&err.to_string())),
-        }
+        let mut rng = OsRng;
+        Ok(Token(_Token::random::<Sha512, OsRng>(&mut rng)))
     }
 
     /// Blinds the `Token`, returning a `BlindedToken` to be sent to the server.
@@ -85,10 +83,8 @@ impl Token {
 impl SigningKey {
     /// Generates a new random `SigningKey` using the provided random number generator.
     pub fn random() -> Result<SigningKey, JsValue> {
-        match OsRng::new() {
-            Ok(mut rng) => Ok(SigningKey(_SigningKey::random::<OsRng>(&mut rng))),
-            Err(err) => Err(JsValue::from_str(&err.to_string())),
-        }
+        let mut rng = OsRng;
+        Ok(SigningKey(_SigningKey::random::<OsRng>(&mut rng)))
     }
 
     /// Signs the provided `BlindedToken`
@@ -150,27 +146,18 @@ impl BatchDLEQProof {
         signed_tokens: String,
         signing_key: &SigningKey,
     ) -> Result<BatchDLEQProof, JsValue> {
-        match OsRng::new() {
-            Ok(mut rng) => {
-                let blinded_tokens: Vec<_BlindedToken> = blinded_tokens
-                    .split(",")
-                    .map(|s| _BlindedToken::decode_base64(s).unwrap())
-                    .collect();
-                let signed_tokens: Vec<_SignedToken> = signed_tokens
-                    .split(",")
-                    .map(|s| _SignedToken::decode_base64(s).unwrap())
-                    .collect();
-                _BatchDLEQProof::new::<Sha512, _>(
-                    &mut rng,
-                    &blinded_tokens,
-                    &signed_tokens,
-                    &signing_key.0,
-                )
-                .map(|p| p.into())
-                .map_err(|e| convert_error(e))
-            }
-            Err(err) => Err(JsValue::from_str(&err.to_string())),
-        }
+        let mut rng = OsRng;
+        let blinded_tokens: Vec<_BlindedToken> = blinded_tokens
+            .split(",")
+            .map(|s| _BlindedToken::decode_base64(s).unwrap())
+            .collect();
+        let signed_tokens: Vec<_SignedToken> = signed_tokens
+            .split(",")
+            .map(|s| _SignedToken::decode_base64(s).unwrap())
+            .collect();
+        _BatchDLEQProof::new::<Sha512, _>(&mut rng, &blinded_tokens, &signed_tokens, &signing_key.0)
+            .map(|p| p.into())
+            .map_err(|e| convert_error(e))
     }
 
     /// Verify the `BatchDLEQProof` returning a comma separated list of b64 encoded unblinded tokens,
