@@ -8,6 +8,11 @@ const pKey = sKey.public_key()
 const token1 = Token.random()
 const token2 = Token.random()
 
+if (token1.encode_base64() === token2.encode_base64()) {
+  console.error('Expected token1 and token2 to be distinct')
+  process.exit(1)
+}
+
 const tokens = token1.encode_base64() + ',' + token2.encode_base64()
 
 const blindedToken1 = token1.blind()
