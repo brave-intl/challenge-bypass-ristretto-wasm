@@ -1,4 +1,4 @@
-#![recursion_limit="128"]
+#![recursion_limit = "128"]
 
 extern crate proc_macro;
 extern crate proc_macro2;
@@ -6,7 +6,7 @@ extern crate proc_macro2;
 use proc_macro::TokenStream;
 use proc_macro2::{Ident, Span};
 use quote::quote;
-use syn::{parse_macro_input, DeriveInput};
+use syn::{DeriveInput, parse_macro_input};
 
 #[proc_macro_derive(Base64)]
 pub fn base64(input: TokenStream) -> TokenStream {

@@ -2,7 +2,7 @@
 name = "cbr-macros"
 version = "0.1.0"
 authors = ["eV <ev@7pr.xyz>"]
-edition = "2018"
+edition = "2024"
 
 [dependencies]
 syn = "2.0"

@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+    - name: Setup Rust toolchain
+      uses: actions-rust-lang/setup-rust-toolchain@1780873c7b576612439a134613cc4cc74ce5538c # v1.15.2
+    - name: Setup Node
+      uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+      with:
+        node-version: '24.x'
+    - name: Check formatting
+      run: cargo fmt --check
+    - name: Install wasm target and wasm-pack
+      run: cargo install wasm-pack@0.13.1 && rustup target add wasm32-unknown-unknown 
+    - name: Build
+      run: make
+    - name: Test
+      run: make test

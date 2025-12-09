@@ -1,6 +1,6 @@
+extern crate cbr_macros;
 extern crate challenge_bypass_ristretto;
 extern crate hmac;
-extern crate cbr_macros;
 extern crate rand;
 extern crate sha2;
 extern crate wasm_bindgen;
@@ -155,14 +155,9 @@ impl BatchDLEQProof {
             .split(",")
             .map(|s| _SignedToken::decode_base64(s).unwrap())
             .collect();
-        _BatchDLEQProof::new::<Sha512, _>(
-            &mut rng,
-            &blinded_tokens,
-            &signed_tokens,
-            &signing_key.0,
-        )
-        .map(|p| p.into())
-        .map_err(|e| convert_error(e))
+        _BatchDLEQProof::new::<Sha512, _>(&mut rng, &blinded_tokens, &signed_tokens, &signing_key.0)
+            .map(|p| p.into())
+            .map_err(|e| convert_error(e))
     }
 
     /// Verify the `BatchDLEQProof` returning a comma separated list of b64 encoded unblinded tokens,
