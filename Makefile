@@ -1,18 +1,15 @@
 all: pkg
 
-.PHONY: clean test web pack-web
+.PHONY: clean test pack-web
 
 pkg: cbr-wasm/src/lib.rs cbr-wasm/Cargo.toml
-	cd cbr-wasm && wasm-pack build --scope brave-intl --out-dir ../pkg --target nodejs
+	cd cbr-wasm && wasm-pack build --scope brave-intl --out-dir ../pkg --target web
 
-web: cbr-wasm/src/lib.rs cbr-wasm/Cargo.toml
-	cd cbr-wasm && wasm-pack build --scope brave-intl --out-dir ../pkg-web --target web
-
-pack-web: web
-	wasm-pack pack -d pkg-web
+pack-web: pkg
+	wasm-pack pack -d pkg
 
 clean:
-	rm -rf pkg pkg-web
+	rm -rf pkg
 
 test: pkg
 	node test.js
