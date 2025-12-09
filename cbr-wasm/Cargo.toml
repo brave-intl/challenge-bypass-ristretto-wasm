@@ -1,9 +1,9 @@
 [package]
 name = "challenge-bypass-ristretto-wasm"
-version = "0.1.0"
+version = "2.0.3"
 authors = ["eV <ev@7pr.xyz>"]
 edition = "2024"
-description = "a WASM crate to expose functionality from challenge-bypass-ristretto (WIP)"
+description = "a WASM crate to expose functionality from challenge-bypass-ristretto"
 
 [lib]
 crate-type = ["cdylib"]
