@@ -40,9 +40,9 @@ checksum = "9330f8b2ff13f34540b44e946ef35111825727b38d33286ef986142615121801"
 
 [[package]]
 name = "challenge-bypass-ristretto"
-version = "2.0.3"
+version = "2.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "349e87fdb005459d299a6c19d686b9f289346146b2d5776423c1771a9e6e0546"
+checksum = "678f9e12dafa3a0ef0c300dea81a4c716cd9d1940efd9fd5ea0267acc82b49b6"
 dependencies = [
  "base64",
  "curve25519-dalek",
@@ -57,7 +57,7 @@ dependencies = [
 
 [[package]]
 name = "challenge-bypass-ristretto-wasm"
-version = "0.1.0"
+version = "2.0.4"
 dependencies = [
  "cbr-macros",
  "challenge-bypass-ristretto",
