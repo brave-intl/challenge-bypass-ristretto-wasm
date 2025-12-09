@@ -1,4 +1,8 @@
-const { SigningKey, Token, BatchDLEQProof, UnblindedToken } = require('./pkg')
+const { initSync, SigningKey, Token, BatchDLEQProof, UnblindedToken } = require('./pkg');
+const fs = require('fs')
+const wasmBin = fs.readFileSync('./pkg/challenge_bypass_ristretto_bg.wasm')
+
+initSync(wasmBin)
 
 const msg = Buffer.from('test message')
 
