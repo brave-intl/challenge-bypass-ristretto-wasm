@@ -23,6 +23,10 @@ jobs:
       uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
       with:
         node-version: '24.x'
+    - name: Install yq
+      run: apt install yq
+    - name: Check versions are consistent
+      run: [ "$(tomlq -r '.package.version' cbr-wasm/Cargo.toml)" = "$(tomlq -r '.dependencies."challenge-bypass-ristretto".version' cbr-wasm/Cargo.toml)" ] || (echo "Error: Crate version does not match challenge-bypass-ristretto version" && exit 1)
     - name: Check formatting
       run: cargo fmt --check
     - name: Install wasm target and wasm-pack
