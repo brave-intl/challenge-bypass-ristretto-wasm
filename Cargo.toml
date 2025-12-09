@@ -1,0 +1,3 @@
+[workspace]
+members = ["cbr-wasm", "cbr-macros"]
+resolver = "3"
