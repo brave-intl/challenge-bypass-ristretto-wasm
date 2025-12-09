@@ -11,13 +11,11 @@ name = "challenge_bypass_ristretto"
 
 [dependencies]
 wasm-bindgen = "0.2"
-rand = { version = "0.7", features = ["wasm-bindgen"] }
-sha2 = "0.9"
-hmac = "0.10"
-
-[dependencies.challenge-bypass-ristretto]
-version = "1.0.2"
-features = ["base64"]
+rand = "0.8"
+getrandom = { version = "0.2", features = ["js"] }
+sha2 = "0.10"
+hmac = "0.12"
+challenge-bypass-ristretto = { version = "2", features = ["base64"] }
 
 [dependencies.cbr-macros]
 path = "../cbr-macros"

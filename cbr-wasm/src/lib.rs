@@ -68,9 +68,9 @@ pub struct BatchDLEQProof(_BatchDLEQProof);
 #[wasm_bindgen]
 impl Token {
     /// Generates a new random `Token` using the provided random number generator.
-    pub fn random() -> Token {
+    pub fn random() -> Result<Token, JsValue> {
         let mut rng = OsRng;
-        Token(_Token::random::<Sha512, OsRng>(&mut rng))
+        Ok(Token(_Token::random::<Sha512, OsRng>(&mut rng)))
     }
 
     /// Blinds the `Token`, returning a `BlindedToken` to be sent to the server.
@@ -82,9 +82,9 @@ impl Token {
 #[wasm_bindgen]
 impl SigningKey {
     /// Generates a new random `SigningKey` using the provided random number generator.
-    pub fn random() -> SigningKey {
+    pub fn random() -> Result<SigningKey, JsValue> {
         let mut rng = OsRng;
-        SigningKey(_SigningKey::random::<OsRng>(&mut rng))
+        Ok(SigningKey(_SigningKey::random::<OsRng>(&mut rng)))
     }
 
     /// Signs the provided `BlindedToken`
