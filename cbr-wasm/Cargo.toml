@@ -1,6 +1,6 @@
 [package]
 name = "challenge-bypass-ristretto-wasm"
-version = "2.0.3"
+version = "2.0.4"
 authors = ["eV <ev@7pr.xyz>"]
 edition = "2024"
 description = "a WASM crate to expose functionality from challenge-bypass-ristretto"
