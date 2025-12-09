@@ -24,7 +24,7 @@ jobs:
       with:
         node-version: '24.x'
     - name: Install yq
-      run: apt install yq
+      run: sudo apt-get update && sudo apt-get install yq
     - name: Check versions are consistent
       run: |
         [ "$(tomlq -r '.package.version' cbr-wasm/Cargo.toml)" = "$(tomlq -r '.dependencies."challenge-bypass-ristretto".version' cbr-wasm/Cargo.toml)" ] || (echo "Error: Crate version does not match challenge-bypass-ristretto version" && exit 1)
