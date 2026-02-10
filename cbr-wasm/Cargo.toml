@@ -12,7 +12,7 @@ name = "challenge_bypass_ristretto"
 [dependencies]
 wasm-bindgen = "0.2"
 rand = "0.8"
-getrandom = { version = "0.2", features = ["js"] }
+getrandom = { version = "0.4", features = ["js"] }
 sha2 = "0.10"
 hmac = "0.12"
 challenge-bypass-ristretto = { version = "2.0.4", features = ["base64"] }
