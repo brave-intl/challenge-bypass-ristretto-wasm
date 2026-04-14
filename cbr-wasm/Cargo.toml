@@ -14,7 +14,7 @@ wasm-bindgen = "0.2"
 rand = "0.8"
 getrandom = { version = "0.2", features = ["js"] }
 sha2 = "0.10"
-hmac = "0.12"
+hmac = "0.13"
 challenge-bypass-ristretto = { version = "2.0.4", features = ["base64"] }
 
 [dependencies.cbr-macros]
